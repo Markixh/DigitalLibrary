@@ -1,12 +1,12 @@
-﻿using DigitalLibrary.Library;
+﻿using DigitalLibrary.DAL.Entities;
 
 namespace DigitalLibrary.Console
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            using (var db = new Library.AppContext())
+            using (var db = new DAL.Settings.AppContext())
             {
                 var user1 = new User { Name = "Андрей"};
                 var user2 = new User { Name = "Елена"};
