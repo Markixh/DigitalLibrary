@@ -37,7 +37,6 @@ namespace DigitalLibrary.DAL.Repositories
 
         public int AddBookToUser(User user, Book book)
         {
-            user.Books.Add(book);
             return appContext.SaveChanges();
         }
     }

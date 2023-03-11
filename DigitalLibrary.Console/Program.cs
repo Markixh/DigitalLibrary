@@ -15,8 +15,8 @@ namespace DigitalLibrary.Console
                 var genre1 = new Genre { GenreName = "Роман" };
                 var genre2 = new Genre { GenreName = "Детективная фантастика" };
 
-                var book1 = new Book { Title = "Мастер и Маргарита", Year = "1966", Author = "Михаил Булгаков", Genre = genre1 };
-                var book2 = new Book { Title = "Происхождение", Year = "2022", Author = "Дэн Браун", Genre = genre2 };
+                var book1 = new Book { Title = "Мастер и Маргарита", Year = 1966, Author = "Михаил Булгаков", Genre = genre1 };
+                var book2 = new Book { Title = "Происхождение", Year = 2022, Author = "Дэн Браун", Genre = genre2 };
 
                 bookRepository.InsertBook(book1);
                 bookRepository.InsertBook(book2);
