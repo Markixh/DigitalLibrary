@@ -2,50 +2,43 @@
 
 namespace DigitalLibrary.DAL.Repositories
 {
-    public class UserRepository
-    {  
+    public class UserRepository : BaseRepository
+    {
+        public UserRepository(Settings.AppContext appcontext) : base(appcontext) { }
+
         public User GetUserById(int id)
         {
-            using (var db = new Settings.AppContext())
-            {
-                return db.Users.Where(i => i.Id == id).FirstOrDefault();
-            }
+            return appContext.Users.Where(i => i.Id == id).FirstOrDefault();
         }
 
         public List<User> GetAllUsers(int id)
         {
-            using (var db = new Settings.AppContext())
-            {
-                return db.Users.ToList();
-            }
+            return appContext.Users.ToList();
         }
 
         public int DelUser(User user)
         {
-            using (var db = new Settings.AppContext())
-            {
-                db.Users.Remove(user);
-                return db.SaveChanges();
-            }
+            appContext.Users.Remove(user);
+            return appContext.SaveChanges();
         }
 
         public int InsertUser(User user)
         {
-            using (var db = new Settings.AppContext())
-            {
-                db.Users.Add(user);
-                return db.SaveChanges();
-            }
+            appContext.Users.Add(user);
+            return appContext.SaveChanges();
         }
 
         public int UpdateUserNameById(int id, string name)
         {
-            using (var db = new Settings.AppContext())
-            {
-                var user = GetUserById(id);
-                user.Name = name;
-                return db.SaveChanges();
-            }
+            var user = GetUserById(id);
+            user.Name = name;
+            return appContext.SaveChanges();
+        }
+
+        public int AddBookToUser(User user, Book book)
+        {
+            user.Books.Add(book);
+            return appContext.SaveChanges();
         }
     }
 }

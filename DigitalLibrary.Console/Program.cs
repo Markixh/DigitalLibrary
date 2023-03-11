@@ -1,4 +1,5 @@
 ﻿using DigitalLibrary.DAL.Entities;
+using DigitalLibrary.DAL.Repositories;
 
 namespace DigitalLibrary.Console
 {
@@ -8,19 +9,27 @@ namespace DigitalLibrary.Console
         {
             using (var db = new DAL.Settings.AppContext())
             {
-                var user1 = new User { Name = "Андрей"};
-                var user2 = new User { Name = "Елена"};
+                UserRepository userRepository = new UserRepository(db);
+                BookRepository bookRepository = new BookRepository(db);
 
-                db.Users.Add(user1);
-                db.Users.Add(user2);
+                var genre1 = new Genre { GenreName = "Роман" };
+                var genre2 = new Genre { GenreName = "Детективная фантастика" };
 
-                var book1 = new Book { Title = "Мастер и Маргарита", Year = "1966" };
-                var book2 = new Book { Title = "Происхождение", Year = "2022" };
+                var book1 = new Book { Title = "Мастер и Маргарита", Year = "1966", Author = "Михаил Булгаков", Genre = genre1 };
+                var book2 = new Book { Title = "Происхождение", Year = "2022", Author = "Дэн Браун", Genre = genre2 };
 
-                db.Books.Add(book1);
-                db.Books.Add(book2);
+                bookRepository.InsertBook(book1);
+                bookRepository.InsertBook(book2);
 
-                db.SaveChanges();
+                var user1 = new User { Name = "Андрей" };
+                var user2 = new User { Name = "Елена" };
+
+
+                userRepository.InsertUser(user1);
+                userRepository.InsertUser(user2);
+
+                userRepository.AddBookToUser(user1 , book1);
+                userRepository.AddBookToUser(user2 , book2);
             }
         }
     }

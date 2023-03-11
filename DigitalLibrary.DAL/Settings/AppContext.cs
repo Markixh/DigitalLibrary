@@ -11,6 +11,7 @@ namespace DigitalLibrary.DAL.Settings
 
         public AppContext()
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
