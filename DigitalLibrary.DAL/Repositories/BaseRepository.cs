@@ -1,5 +1,8 @@
 ﻿namespace DigitalLibrary.DAL.Repositories
 {
+    /// <summary>
+    /// Базовый репозиторий
+    /// </summary>
     public class BaseRepository
     {
         public Settings.AppContext appContext;
